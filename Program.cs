@@ -8,7 +8,7 @@ class Program
 
         while (intentosRestantes > 0)
         {
-            Console.WriteLine("Ingrese una clave:");
+            Console.WriteLine("Ingrese una clave; ");
             string clave = Console.ReadLine();
 
             if (clave.Length <= 6)
