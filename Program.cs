@@ -1,29 +1,30 @@
-﻿using System;
+using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Ingrese una clave;");
-        string clave = Console.ReadLine();
+        int intentosRestantes = 3;
 
-        if (clave.Length <= 6)
+        while (intentosRestantes > 0)
         {
-            Console.WriteLine("La clave debe tener un largo sobre los 6 caracteres;");
-        }
-        else
-        {
-            if (!Char.IsUpper(clave[0]))
+            Console.WriteLine("Ingrese una clave:");
+            string clave = Console.ReadLine();
+
+            if (clave.Length <= 6)
             {
-                Console.WriteLine("La primera letra de la clave debe ser mayúscula;");
+                Console.WriteLine("La clave debe tener un largo sobre los 6 caracteres.");
+            }
+            else if (!Char.IsUpper(clave[0]))
+            {
+                Console.WriteLine("La primera letra de la clave debe ser mayúscula.");
             }
             else
             {
                 bool tieneNumero = false;
                 for (int i = 1; i < clave.Length; i++)
                 {
-                    int codigoAscii = (int)clave[i];
-                    if (codigoAscii >= 48 && codigoAscii <= 57)
+                    if (Char.IsDigit(clave[i]))
                     {
                         tieneNumero = true;
                         break;
@@ -31,13 +32,25 @@ class Program
                 }
                 if (!tieneNumero)
                 {
-                    Console.WriteLine("La clave debe tener un número en cualquier posición excepto la primera;");
+                    Console.WriteLine("La clave debe tener un número en cualquier posición excepto la primera.");
                 }
                 else
                 {
-                    Console.WriteLine("Clave creada");
+                    Console.WriteLine("Clave creada.");
+                    break;
                 }
             }
+
+            intentosRestantes--;
+            if (intentosRestantes > 0)
+            {
+                Console.WriteLine("Intentos restantes: {0}.", intentosRestantes);
+            }
+        }
+
+        if (intentosRestantes == 0)
+        {
+            Console.WriteLine("Se han agotado los 3 intentos. Intente nuevamente más tarde.");
         }
 
         Console.WriteLine("Presione una tecla para salir...");
